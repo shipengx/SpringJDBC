@@ -7,23 +7,25 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
+import org.apache.log4j.Logger;
+
 import com.shipeng.customer.dao.CustomerDao;
 import com.shipeng.customer.model.Customer;
 
-public class JdbcCustomerDAO implements CustomerDao
-{
+public class JdbcCustomerDAO implements CustomerDao {
+	private static final Logger logger = Logger.getLogger(JdbcCustomerDAO.class);
 	private DataSource dataSource;
-	
+
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
 	}
-	
-	public void insert(Customer customer){
-		
-		String sql = "INSERT INTO CUSTOMER " +
-				"(CUST_ID, NAME, AGE) VALUES (?, ?, ?)";
+
+	public void insert(Customer customer) {
+
+		String sql = "INSERT INTO CUSTOMER "
+				+ "(CUST_ID, NAME, AGE) VALUES (?, ?, ?)";
 		Connection conn = null;
-		
+
 		try {
 			conn = dataSource.getConnection();
 			PreparedStatement ps = conn.prepareStatement(sql);
@@ -32,25 +34,27 @@ public class JdbcCustomerDAO implements CustomerDao
 			ps.setInt(3, customer.getAge());
 			ps.executeUpdate();
 			ps.close();
-			
+
 		} catch (SQLException e) {
+			logger.error("This is Error message", new Exception("Testing"));
 			throw new RuntimeException(e);
-			
+
 		} finally {
 			if (conn != null) {
 				try {
 					conn.close();
-				} catch (SQLException e) {}
+				} catch (SQLException e) {
+				}
 			}
 		}
 	}
-	
-	public Customer findByCustomerId(int custId){
-		
+
+	public Customer findByCustomerId(int custId) {
+
 		String sql = "SELECT * FROM CUSTOMER WHERE CUST_ID = ?";
-		
+
 		Connection conn = null;
-		
+
 		try {
 			conn = dataSource.getConnection();
 			PreparedStatement ps = conn.prepareStatement(sql);
@@ -58,11 +62,8 @@ public class JdbcCustomerDAO implements CustomerDao
 			Customer customer = null;
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
-				customer = new Customer(
-					rs.getInt("CUST_ID"),
-					rs.getString("NAME"), 
-					rs.getInt("Age")
-				);
+				customer = new Customer(rs.getInt("CUST_ID"),
+						rs.getString("NAME"), rs.getInt("Age"));
 			}
 			rs.close();
 			ps.close();
@@ -72,9 +73,20 @@ public class JdbcCustomerDAO implements CustomerDao
 		} finally {
 			if (conn != null) {
 				try {
-				conn.close();
-				} catch (SQLException e) {}
+					conn.close();
+				} catch (SQLException e) {
+				}
 			}
 		}
 	}
+
+	public void deleteCustomerById(int custId) {
+
+	} // end deleteCustomerById
+
+	public void update(Customer customer) {
+	    
+		
+	} // end update
+
 }
