@@ -12,4 +12,12 @@
 		<property name="password" value="${ma.marketplace.ro.password}" />
 	</bean>
 
+	<bean id="netezzaDataSource" class="org.apache.commons.dbcp.BasicDataSource"
+    destroy-method="close">
+		<property name="driverClassName" value="org.netezza.Driver" />
+		<property name="url" value="jdbc:netezza://${ma.netezza.db.svr}:${ma.netezza.db.port}/${ma.netezza.ro.db}?connectTimeout=20000" />
+		<property name="username" value="${ma.netezza.ro.user}" />
+		<property name="password" value="${ma.netezza.ro.password}" />
+	</bean>
+	
 </beans>

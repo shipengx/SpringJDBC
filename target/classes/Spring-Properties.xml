@@ -7,7 +7,7 @@
 	<bean id="configFileList" class="java.util.LinkedList">
         <constructor-arg>
             <list>
-                <value>file:///opt/opinmind/conf/model-automation/model-automation.properties</value>
+                <value>file:///opt/opinmind/conf/modelauto/model-automation.properties</value>
                 <value>file:///Users/sxu/.modelauto/passwords.properties</value>
             </list>      
         </constructor-arg>
