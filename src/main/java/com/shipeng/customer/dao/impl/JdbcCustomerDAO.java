@@ -13,7 +13,8 @@ import com.shipeng.customer.dao.CustomerDao;
 import com.shipeng.customer.model.Customer;
 
 public class JdbcCustomerDAO implements CustomerDao {
-	private static final Logger logger = Logger.getLogger(JdbcCustomerDAO.class);
+	private static final Logger logger = Logger
+			.getLogger(JdbcCustomerDAO.class);
 	private DataSource dataSource;
 
 	public void setDataSource(DataSource dataSource) {
@@ -79,14 +80,5 @@ public class JdbcCustomerDAO implements CustomerDao {
 			}
 		}
 	}
-
-	public void deleteCustomerById(int custId) {
-
-	} // end deleteCustomerById
-
-	public void update(Customer customer) {
-	    
-		
-	} // end update
 
 }
