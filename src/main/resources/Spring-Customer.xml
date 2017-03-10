@@ -7,4 +7,7 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
+    <bean id="pubmaticDao" class="com.shipeng.customer.dao.impl.PubmaticDaoImpl">
+		<property name="dataSource" ref="netezzaDataSource" />
+	</bean>
 </beans>

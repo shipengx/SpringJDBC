@@ -19,5 +19,7 @@
 		<property name="username" value="${ma.netezza.ro.user}" />
 		<property name="password" value="${ma.netezza.ro.password}" />
 	</bean>
+		
+	
 	
 </beans>
