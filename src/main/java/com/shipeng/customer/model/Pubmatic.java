@@ -29,4 +29,8 @@ public class Pubmatic {
 		this.siteId = siteId;
 	}
 	
+	public String toString() {
+		return "[Pubmatic: bidId="+bidId+", siteId="+siteId+"]";
+	}
+	
 } //end class Pubmatic
